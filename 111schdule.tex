@@ -1,0 +1,908 @@
+\documentclass[12pt,oneside]{article}
+\usepackage{xeCJK}
+\xeCJKsetup{AutoFakeBold=true, AutoFakeSlant=true}
+\setCJKmainfont{新細明體}
+\setmainfont{Times New Roman}
+%\setmainfont{標楷體}
+%\usepackage{ctex}
+
+\usepackage{xcolor}
+\usepackage{amsmath} %數學庫
+\usepackage{setspace}
+\usepackage{fancyhdr} %排版用，頁數
+\usepackage[colorlinks=true, linkcolor=black, citecolor=black, urlcolor=blue]{hyperref}
+
+\usepackage{graphicx} %插入图片的宏包
+\usepackage{float} %设置图片浮动位置的宏包
+\usepackage{subfigure} %插入多图时用子图显示的宏包
+\usepackage{chngpage}
+\usepackage{emptypage}
+
+
+\usepackage[margin=2cm]{geometry} %上下左右的流空
+\usepackage{diagbox} %表格的斜線標題
+
+\usepackage{spacingtricks} %表格間距
+
+
+%--------------------color---------------------------%
+\definecolor{group_color_1}{HTML}{1D4765}
+\definecolor{group_color_2}{HTML}{E5e6e1}
+\definecolor{group_color_3}{HTML}{A7d1d9}
+\definecolor{group_color_4}{HTML}{bebbb7}
+
+%--------------------color---------------------------%
+
+
+%畫流程圖
+\usepackage{tikz, mathpazo}
+\usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{shapes, shapes.multipart}
+\usetikzlibrary{calc, positioning}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{fit}
+
+
+\renewcommand{\baselinestretch}{1.5}
+\renewcommand{\contentsname}{課程規劃}
+
+\title{ 111學年度成設班進階班規劃 }
+\author{ 進階教學組 }
+\date{ \today }
+
+\begin{document}
+
+%----------------初始化------------------%
+
+
+%---------縮放------------%
+\tikzset{global scale/.style={
+    scale=#1,
+    every node/.append style={scale=#1}
+  }
+}
+\tikzset{Decision_shape/.style={
+    trapezium, draw, trapezium left angle=60,
+    trapezium right angle=-60
+}
+}
+
+\tikzset{
+    basic box/.style = {
+        shape=rectangle,
+        align=center, 
+        draw=#1,
+        dashed,
+        thick, 
+        rounded corners
+    }
+}
+
+%---------縮放------------%
+
+
+
+%--------流程圖樣式---------------%
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered,text=white, draw=black, fill=group_color_1, text width=3cm]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=group_color_2, text width=3cm]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=group_color_3, text width=3cm]
+\tikzstyle{decision} = [Decision_shape, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=group_color_4, text width=3cm]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+%--------流程圖樣式---------------%
+
+%---------設置最大節點䥗度------------%
+\tikzset {
+MaxWidth3/.style={
+    text width=3cm
+}
+}
+%---------設置最大節點䥗度------------%
+
+
+
+
+%---------------初始化-------------------%
+\pagestyle{empty}
+\maketitle
+
+\thispagestyle{empty}
+
+\clearpage
+
+\tableofcontents
+\pagestyle{plain}
+\setcounter{page}{0}
+\clearpage
+
+\section{課程目的}
+
+\section{教學方式}
+\subsection{課程時間安排}
+
+因為講義應該會提早生成出來，
+所以目前預計是能上就盡量上，
+如果有發現學員出現理解困難的時候，
+應該會讓大家休息一下，
+透過考試複習以前學過的東西。
+
+\vspace*{1.5em};
+\begin{center}
+    整體流程大概如下    
+\end{center}
+
+\begin{figure}[H]
+\begin{tikzpicture}[node distance=0cm][H]
+\def\Globalxshift{5cm};
+\def\Globalyshift{2cm};
+
+\node (start) [startstop]{開始上課};
+\node (Algorithm1) [process, below of=start, yshift={-\Globalyshift}] {演算法-1};
+\node (Algorithm1_Check) [decision, right of=Algorithm1, xshift={\Globalxshift*1.25}]{確認學員狀態};
+
+\node (Algorithm2) [process, right of=Algorithm1_Check, xshift={\Globalxshift*1.25}] {演算法-2};
+\node (Relax_and_Test) [process, below of=Algorithm2, yshift={-\Globalyshift}] {休息\&考試};
+
+
+\draw [->] (start) -- (Algorithm1);
+\draw [->] (Algorithm1) -- (Algorithm1_Check);
+\draw [->] (Algorithm1_Check) --node[anchor=south]{良好} (Algorithm2);
+\draw [->] (Algorithm1_Check) |-node[anchor=south, xshift={\Globalxshift*0.75}]{不好} (Relax_and_Test);
+
+
+\end{tikzpicture}
+\end{figure}
+
+\clearpage
+\subsection{上課}
+上課目前還在思考要以哪一中方式來教學，
+目前有幾種想法。
+
+\vspace*{2em}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item 
+        維持之前的教法，
+        在課堂上把每一個觀念講清楚\\
+        \textbf{優點}: 
+        \begin{adjustwidth}{2em}{0em}
+            \begin{enumerate}
+                \item 可以最大程度的提供優質的教學
+                \item 可以讓較不主動的學員學到基本的演算法
+            \end{enumerate}
+        \end{adjustwidth} 
+
+        \textbf{缺點}: 
+        \begin{adjustwidth}{2em}{0em}
+            \begin{enumerate}
+                \item 需要花的時間較多，能教的演算法較少
+                \item 因為需要在聽的時候理解，所以可能會導致學員因為無法理解而喪失自信心抑或是熱誠
+            \end{enumerate}
+        \end{adjustwidth}
+    
+    \vspace*{2em}
+    \item 
+        提前兩到三個禮拜把講義釋出，然後上課讓他們提問。\\
+        \textbf{優點}:
+        \begin{adjustwidth}{2em}{0em}
+            \begin{enumerate}
+                \item 進度可以進展的比較快
+                \item 透過上課問問題的方式，可以叫清楚的了解學員們的問題並且提供適當的解釋
+            \end{enumerate}
+        \end{adjustwidth}
+        
+        \textbf{缺點}: 
+        \begin{adjustwidth}{2em}{0em}
+            \begin{enumerate}
+                \item 學員可能害怕提問導致課程變得很尷尬
+                \item 可能沒有人會去讀講義，導致沒什麼學員學到東西
+                \item 很看中講義的詳細度，如果不夠詳細就會導致學員學習效率降低的行為
+            \end{enumerate}
+        \end{adjustwidth}
+
+    \vspace*{2em}
+    \item 
+        在上課時直接解題，讓學員誰可以提問不會的語法，和不了解的部分。\\
+        \textbf{優點}: 
+        \begin{adjustwidth} {2em}{0em}
+        \begin{enumerate}
+            \item 可以讓學員熟悉實作方式和\textbf{debug}技巧
+            \item 透過邊實作邊講解的過程可以讓學員更了解每一區塊的程式碼所需要完成的事情，進一步了解原理
+        \end{enumerate}
+        \end{adjustwidth}
+
+
+        \textbf{缺點}: 
+        \begin{adjustwidth} {2em}{0em}
+        \begin{enumerate}
+            \item
+                現場實作很考驗教學的功力，還有打字的速度
+            \item 
+                時間較難把控，因為\textbf{bug}可能會出現
+            \item 
+                可能會出現學員來不及理解\textbf{code}就打完的情況
+        \end{enumerate}
+        \end{adjustwidth}
+\end{enumerate}
+\end{adjustwidth}
+
+\vspace*{2em}
+現在一切都還沒有定論，
+總之還是需要看學員參與程度來決定使用哪一種教學方式。
+
+\clearpage
+\subsection{考試}
+
+
+\subsubsection{小考}
+
+小考應該會相對的較隨性一點，
+可能會定期，
+也可能會在讓學員們放鬆的練習一下的時候
+目前預計每次小考會有\textbf{3}至\textbf{4}題。
+分配預計會有
+\begin{adjustwidth}{2em}{0em}
+\begin{itemize}
+    \item 1題水題
+    \item 1至2題模板題
+    \item 1題難題
+\end{itemize}
+\end{adjustwidth}
+
+\noindent 就希望可以讓學員們有一定的成就感，
+也讓實力超群的人可以挑戰不同的題目。
+
+\subsubsection{期中考}
+
+期中考則是需要認真的去出題，
+希望每一題都是新的，
+也可以有幾題十分有挑戰性的題目，
+目前預計是\textbf{6}至\textbf{8}題，
+分配預計會有
+\begin{adjustwidth}{2em}{0em}
+\begin{itemize}
+    \item 2至3題水題
+    \item 4至5題模板
+    \item 1至2題難題
+\end{itemize}
+\end{adjustwidth}
+
+\noindent 難題配置較少的原因是因為下一屆的程度可能不太樂觀，
+所以就儘量的放在扎實觀念上面，
+當然，
+模板題也是會有變化的，
+可能還是需要一點時間去思考。
+
+
+
+
+\subsection{作業}
+
+基本上作業只會用來加分，
+因為進階班的作業都會有點難度，
+所以就留給想要拿到資優結業的人了。
+每個禮拜應該都會有作業，
+主要就是模板題，
+因為要在短短幾周內就學會一個演算法確實不太容易。
+
+\clearpage
+\subsection{講義製作方式}
+
+主要是以\textbf{latex}為主，
+如果遇到需要當節課就產出來的話再使用\textbf{hackmd}( 譬如: 當節小考題解 )，
+在講義的部分，
+我想信\textbf{latex}有無限的可能性，
+目前比較熟悉的可能是流程圖製作的部分。
+所以以後可能會在演算法的過程中放下流程圖，
+在\textbf{latex}的部分，
+受到了\href{https://tioj.ck.tp.edu.tw/articles/5}{建中2016講義}的啟發，
+我也想來做一個類似的東西，
+所以之後的講義可能也會分成很多個大觀念，
+之後再分成小觀念，
+讓之後的人可以比較方便的參考。
+
+\vspace*{2.5em}
+然後講義我想再暑假把他爆肝出來，
+要不然高二好像太忙了，
+所以之後可能會在上課前兩三個禮拜就有講義可以讓他們先行預習，
+也許可以增進理解的效率。
+
+\subsection{預計的課程風氣}
+
+我們希望進階班是可以讓學員盡情討論的地方，
+所以可能之後可能也會如同\textbf{資訊枝枒}一樣開\textbf{slido}匿名討論，
+遇到不懂的就問出來
+總有一個人可以幫你解決的，
+也希望課堂上能上學員發表他們的意見，
+這樣也許在意見的碰撞當中就會出現新的想法。
+
+
+
+
+
+\clearpage
+\section{必教}
+
+\subsection{分治}
+\subsubsection*{概念簡述}
+透過把問題不斷的拆分( 通常是拆成兩半)，
+拆到不能再拆的時候再開始合併，
+再合併的同時處理左右兩邊的值，
+最後就可以得到答案。
+
+\subsubsection*{重要觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item 
+        遞迴的觀念要講清楚，
+        不然後面理解會困難
+    \item 
+        通常是從 \textbf{左邊} $\implies$ \textbf{右邊} $\implies$ \textbf{處理} \\
+        不過遇到 \textbf{左邊} $\implies$ \textbf{處理} $\implies$ \textbf{右邊} 需要特別注意。
+
+\end{enumerate}
+\end{adjustwidth}
+
+\subsubsection*{題目}
+\begin{adjustwidth}{2em}{0em}
+\begin{itemize}
+    \item 逆序數對
+    \item 最近點對
+\end{itemize}
+\end{adjustwidth}
+
+\subsubsection*{可延伸的觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item CDQ分治
+    \item 整體二分搜
+\end{enumerate}
+\end{adjustwidth}
+
+
+\clearpage
+\subsection{DP}
+\subsubsection*{概念簡述}
+
+透過把小問題儲存起來，
+讓之後使用的時候可以快速的查詢。
+可以把許多暴搜$O(2^N)$變成$O(N^K)$且$K$為常數
+
+\subsubsection*{重要觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item 對於子問題的轉換需要清楚的解釋
+    \item 重點要放在轉移式上，只要轉移式寫的出來就幾乎解決一切了
+    \item 對於優化可以先不用那麼急
+\end{enumerate}
+\end{adjustwidth}
+
+\subsubsection*{題目}
+\begin{adjustwidth}{2em}{0em}
+\begin{itemize}
+    \item LIS $\quad$ 最長遞增子序列 $O(N^2)$
+    \item LCS $\quad$ 最長共同子序列 $O(N^2)$
+    \item 
+        背包問題
+        \begin{itemize}
+            \item 0/1背包 
+            \item 無限背包
+            \item 有限背包
+        \end{itemize}
+    \item 費氏數列和其延伸
+\end{itemize}
+\end{adjustwidth}
+
+\subsubsection*{可延伸的觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item 單調對列
+    \item 斜率優化
+    \item 狀態壓縮
+    \item 四邊形優化 (目前會: 50\%)
+    \item Alien優化 (50\%)
+    \item SOS優化 (0\%)
+    \item 枚舉子集 (0\%)
+    \item 多重背包 (0\%)
+\end{enumerate}
+\end{adjustwidth}
+
+
+\subsection{greedy}
+\subsubsection*{概念簡述}
+
+透過每一次都選最好的可能性來大幅度的縮短演算法時間。
+
+\subsubsection*{重要觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item
+        要讓他們學會證明方式(數學歸納法)，
+        還有值觀的猜測
+    \item 
+        讓他們學會如何去轉換問題 (雖然我好像也不太會)
+\end{enumerate}
+\end{adjustwidth}
+
+\subsubsection*{題目}
+
+\begin{adjustwidth}{2em}{0em}
+\begin{itemize}
+    \item 最多不相交線段
+    \item 排程
+    \item 和其他經典例題(暫時沒想到)
+\end{itemize}
+\end{adjustwidth}
+
+
+\subsubsection*{可延伸的觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item 最短路徑/最小生成樹
+    \item 有時候會配合二分搜使用
+\end{enumerate}
+\end{adjustwidth}
+
+\clearpage
+\subsection{DFS/BFS}
+
+\subsubsection*{概念簡述}
+一種對於圖形或樹狀圖搜尋的方式，
+分別有深度優先(DFS)，
+和廣度優先(BFS)
+
+
+\subsubsection*{重要觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item BFS 通常使用 \textbf{queue} 實作
+    \item DFS 通常使用 \textbf{遞迴} 實作
+    \item DFS 如果沒有加上\textbf{vis}判斷複雜度是以階乘成長的
+    \item 可能需要用類似動畫的方式來實際模擬一次
+\end{enumerate}
+\end{adjustwidth}
+
+
+
+\subsubsection*{題目}
+\begin{adjustwidth}{2em}{0em}
+\begin{itemize}
+    \item 數獨
+    \item 方格圖上的最短路徑
+    \item 圖的直徑
+\end{itemize}
+\end{adjustwidth}
+
+\subsubsection*{可以延伸的觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item 拓鋪排序
+    \item 最大二分圖匹配
+    \item Tarjan
+\end{enumerate}
+\end{adjustwidth}
+
+\clearpage
+\subsection{二分搜}
+
+
+\subsubsection*{概念簡述}
+對於有單調性的函數可以進行的操作，
+複雜度通常帶有$O(log N)$
+
+\subsubsection*{重要觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item 函數需要有\textbf{單調性}
+    \item 需要注意二分的方式，不然很容易無限迴圈
+    \item 對於陣列已經有實作好的\textbf{lower\_bound}了
+\end{enumerate}
+\end{adjustwidth}
+
+\subsubsection*{可以延伸的觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item 整體二分搜
+\end{enumerate}
+\end{adjustwidth}
+
+\clearpage
+\subsection{應用}
+\subsubsection*{概念簡述}
+就純粹想分享我對於一些題目的看法
+\subsubsection*{題目}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item 2021年學科能力競賽
+    \item 2022年學可能力競賽( 還不確定，可能我都不會)
+    \item Candle
+    \item 台大入營考A
+\end{enumerate}
+\end{adjustwidth}
+
+\subsubsection*{可以延伸的觀念}
+目前還無法評估
+
+
+\clearpage
+\subsection{線段樹/BIT}
+\subsubsection*{概念簡述}
+
+\paragraph*{線段樹}
+\begin{adjustwidth}{2em}{0em}
+    透過對每兩個小區塊分配一個父親，
+    不斷的重複，對小區塊的值做處理，
+    直到剩下一個父親(根節點)。
+\end{adjustwidth}
+
+\paragraph*{BIT}
+\begin{adjustwidth}{2em}{0em}
+    透過數論的方式來達成近似於線段樹的操作，    
+    不過對於可以處理的方式有更多的限制。
+\end{adjustwidth}
+
+
+\subsubsection*{重要觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item  BIT 是有限制的，不能一昧的套用
+    \item 也需要把遞迴的過程和概念講清楚，不然理解會十分困難
+\end{enumerate}
+\end{adjustwidth}
+
+\subsubsection*{題目}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item 模板題*N
+\end{enumerate}
+\end{adjustwidth}
+
+\subsubsection*{可以延伸的觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item 指標線段樹
+    \item 持久化線段樹/BIT
+    \item 李超線段樹
+    \item zkw線段樹(0\%)
+    \item 時間線段數(0\%)
+    \item 線段數優化建圖(0\%)
+    \item 2D線段樹/BIT
+    \item 樹套樹
+\end{enumerate}
+\end{adjustwidth}
+
+
+\clearpage
+
+
+\subsection{最短路}
+
+\subsubsection*{概念簡述}
+在一個有向圖或無向途中找出起始點到終點的最近距離
+分別有三種演算法和一種優化法，複雜度分別為$O(V^3), O(VE), O(E\sim VE), O(VlogE)$
+
+\subsubsection*{重要觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item 需要解釋清楚每一個演算法的作用過程
+    \item 需要讓學員了解每一個演算法的適用範圍
+\end{enumerate}
+\end{adjustwidth}
+
+\subsubsection*{題目}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item 帶負環的最短路徑
+    \item 需同時從兩邊開始的最短路徑
+    \item 模板題*N
+\end{enumerate}
+\end{adjustwidth}
+
+\subsubsection*{可以延伸的觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item Dinic(20\%)
+\end{enumerate}
+\end{adjustwidth}
+
+\clearpage
+
+
+
+\section{選修}
+
+\subsection{矩陣}
+\subsubsection*{概念簡述}
+
+原本為高二的課程，
+但是進階班會稍微提到。
+主要會放在矩陣快速冪上。
+
+
+\subsubsection*{重要觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item 矩陣乘法
+    \item 矩陣的交換律可能不行
+    \item 快速冪
+\end{enumerate}
+\end{adjustwidth}
+
+\subsubsection*{題目}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item 費氏數列(矩陣快速冪)
+\end{enumerate}
+\end{adjustwidth}
+\clearpage
+
+
+\subsection{BST}
+\subsubsection*{概念簡述}
+
+\textbf{BST}是一個很實用的演算法，
+除了可以練習指標的使用之外，
+也可以訓練思考遞迴的能力。
+
+
+\subsubsection*{重要觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item 遞迴過程需仔細想過
+    \item 在刪除節點的時候需要先把子樹的刪掉
+\end{enumerate}
+\end{adjustwidth}
+
+\subsubsection*{可延伸觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item 逆序數對
+    \item 線段樹
+    \item Treap
+    \item map/set
+\end{enumerate}
+\end{adjustwidth}
+\clearpage
+
+
+\subsection{字串算法}
+\subsubsection*{概念簡述}
+字串算法十分的繁雜
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item KMP 
+    \item Trie 
+    \item Zvalue 
+    \item 回文
+    \item AC自動機(0\%)
+    \item 回文自動機
+    \item 後綴數組(0\%)
+\end{enumerate}
+\end{adjustwidth}
+\clearpage
+
+\subsection{LCA/倍增法}
+\subsubsection*{概念簡述}
+
+可以在$O(nlogn)$時間預處理，
+然後$O(logn)$的時間獲得$LCA$。
+
+通常會先使用\textbf{DFS}來獲得每個節點的進入時間和離開時間($T_in, T_out$)，
+之後就可以$O(1)$判斷兩個節點的祖先關係。
+
+
+\subsubsection*{重要觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item 對於次方的處理需小心
+    \item 如何判斷是否為子孫關係
+\end{enumerate}
+\end{adjustwidth}
+
+\clearpage
+
+
+\subsection{Treap}
+\subsubsection*{概念簡述}
+是一個實務上不實用但在競賽上很好用的東西，
+透過一些隨機的方式來讓二元樹的操作複雜度為$log n$
+透過\textbf{fhq treap}也可以做到許多線段樹做不到的事情(e.g.區間翻轉)
+
+\subsubsection*{重要觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item
+        對於複雜度的計算十分困難
+    \item
+        merge、split函式一定需要仔細思考
+    \item
+        需要非常精熟指標，
+        要不然很容易以為他每個操作為$O(N)$
+    \item 
+        在 node 為 \textbf{null} 的時候不能進行操作
+\end{enumerate}
+\end{adjustwidth}
+
+\clearpage
+
+
+\subsection{DSU}
+\subsubsection*{概念簡述}
+可以動態判斷分組結果的演算法，
+透過維護\textbf{father}陣列來獲得較好的複雜度。
+使用路徑壓縮或啟發式合併可以得到$O(logn)$的搜尋時間
+如果同時使用可以得到偽線性複雜度。
+
+\subsubsection*{重要觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item
+        啟發式合併的原理
+    \item 
+        路徑壓縮的正確性
+    \item
+        持久化時需要注意的事項
+\end{enumerate}
+\end{adjustwidth}
+\clearpage
+
+\subsection{最小生成樹}
+\subsubsection*{概念簡述}
+找到一個連接所有點的樹且讓邊的權重最小。
+
+\subsubsection*{重要觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item 
+        使用\textbf{DSU}的方式
+    \item 
+        和最短路徑的差別
+    \item 
+        次小生成樹如何做
+\end{enumerate}
+\end{adjustwidth}
+\clearpage
+
+
+
+
+\subsection{單調隊列}
+\subsubsection*{概念簡述}
+一種\textbf{DP}的優化方式，
+相較於斜率優化、四邊形優化、Aliens 優化 簡單了需多，
+只要會概念，
+實作起來並不困難。
+
+\subsubsection*{重要觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item 
+        如何維護好單調性
+    \item 
+        如何判斷出單調性
+    \item 
+        實作需要注意的小細節
+\end{enumerate}
+\end{adjustwidth}
+\clearpage
+
+
+\subsection{向量/凸包}
+\subsubsection*{概念簡述}
+
+計算幾何，
+就滿滿的數學。
+
+\subsubsection*{重要觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item 
+        對於向量運算的熟悉度
+\end{enumerate}
+\end{adjustwidth}
+\clearpage
+
+
+\subsection{莫隊}
+\subsubsection*{概念簡述}
+一種離線的演算法，
+可以透過對詢問進行分塊跟排序來得到較好的複雜度，
+也可以處理帶修改的情況
+\subsubsection*{重要觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item
+        對於複雜度的證明
+    \item
+        需要注意的事情( e.g. 要把詢問排序回來)
+    \item 
+        在轉移的時候的先後順序
+\end{enumerate}
+\end{adjustwidth}
+\clearpage
+
+
+\subsection{整體二分搜(毒)}
+\subsubsection*{概念簡述}
+和\textbf{CDQ 分治}十分類似，
+是比較難解釋清楚的演算法，
+因為已經被基礎的二分搜定下了觀念，
+對於整體不太能想像。
+
+也是一個離線算法，
+對於帶修改的資料也比較能夠去應付
+\subsubsection*{重要觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item
+        是如何把詢問分成左右兩遍的，
+        和如何維持左右兩區間的順序。
+    \item 
+        對於修改操作如何實作
+\end{enumerate}
+\end{adjustwidth}
+\clearpage
+
+
+\subsection{CDQ分治}
+\subsubsection*{概念簡述}
+
+分治的一些特殊用法。
+通常用於離線算法。
+有時也可以把$O(N^2)$的\textbf{DP}變成$O(Nlogn)$
+
+\subsubsection*{重要觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item 
+        對於分治的基礎理解
+    \item 
+        處理左右區間的順序
+\end{enumerate}
+\end{adjustwidth}
+\clearpage
+
+
+\subsection{神奇的類二元樹}
+\subsubsection*{概念簡述}
+這是我某天突發起想出來的資料結構，
+主要透過位元運算來時做
+複雜度為$O(nlog^2C)$或著$O(nlogC loglogC )$ 
+\subsubsection*{重要觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item 
+        對於位元運算的觀念
+    \item 
+        對於完美二元樹的理解
+    \item 
+        「億」點點的數論
+\end{enumerate}
+\end{adjustwidth}
+\clearpage
+
+
+\subsection{SCC/BCC}
+分別為點雙連通分量和邊雙連通分量。
+
+\subsubsection*{概念簡述}
+可能不太能簡述，
+因為需要涉及的知識有些多
+\subsubsection*{重要觀念}
+\begin{adjustwidth}{2em}{0em}
+\begin{enumerate}
+    \item \textbf{DFS tree}
+    \item 圖的連通性
+    \item 點雙連通分量，邊雙連通分量
+    \item Tarjan
+\end{enumerate}
+\end{adjustwidth}
+
+
+
+
+
+\end{document}
+
+
+
+% 資訊
