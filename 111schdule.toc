@@ -32,3 +32,4 @@
 \contentsline {subsection}{\numberline {4.12}CDQ分治}{25}{subsection.4.12}%
 \contentsline {subsection}{\numberline {4.13}神奇的類二元樹}{26}{subsection.4.13}%
 \contentsline {subsection}{\numberline {4.14}SCC/BCC}{27}{subsection.4.14}%
+\contentsline {section}{\numberline {5}結語}{27}{section.5}%
